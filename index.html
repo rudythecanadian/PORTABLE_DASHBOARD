@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <title>RTK Survey</title>
+
+  <!-- Mapbox GL JS -->
+  <script src="https://api.mapbox.com/mapbox-gl-js/v3.0.1/mapbox-gl.js"></script>
+  <link href="https://api.mapbox.com/mapbox-gl-js/v3.0.1/mapbox-gl.css" rel="stylesheet">
+
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <!-- Status Bar (top) -->
+  <div id="status-bar">
+    <div class="status-left">
+      <span id="fix-status" class="fix-badge no-fix">NO FIX</span>
+      <span id="accuracy">--</span>
+    </div>
+    <div class="status-right">
+      <span id="satellites">-- SV</span>
+      <span id="connection" class="disconnected">OFFLINE</span>
+    </div>
+  </div>
+
+  <!-- Map Container -->
+  <div id="map"></div>
+
+  <!-- Coordinates Display -->
+  <div id="coords-display">
+    <div id="latitude">--</div>
+    <div id="longitude">--</div>
+  </div>
+
+  <!-- Measure Display (shown when measuring) -->
+  <div id="measure-display" class="hidden">
+    <div class="measure-info">
+      <span id="measure-status">Ready to measure</span>
+      <span id="measure-start-label"></span>
+    </div>
+    <button id="measure-finish" class="btn-finish hidden">Finish</button>
+    <button id="measure-cancel" class="btn-cancel">Cancel</button>
+  </div>
+
+  <!-- Bottom Action Bar -->
+  <div id="action-bar">
+    <button id="btn-mark" class="action-btn">
+      <svg viewBox="0 0 24 24" fill="currentColor">
+        <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
+      </svg>
+      <span>Mark</span>
+    </button>
+    <button id="btn-measure" class="action-btn">
+      <svg viewBox="0 0 24 24" fill="currentColor">
+        <path d="M21.71 3.29a1 1 0 0 0-1.42 0l-18 18a1 1 0 0 0 1.42 1.42l18-18a1 1 0 0 0 0-1.42zM5.41 19L19 5.41V10a1 1 0 0 0 2 0V3a1 1 0 0 0-1-1h-7a1 1 0 0 0 0 2h4.59z"/>
+      </svg>
+      <span>Measure</span>
+    </button>
+    <button id="btn-center" class="action-btn">
+      <svg viewBox="0 0 24 24" fill="currentColor">
+        <path d="M12 8c-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4-1.79-4-4-4zm8.94 3c-.46-4.17-3.77-7.48-7.94-7.94V1h-2v2.06C6.83 3.52 3.52 6.83 3.06 11H1v2h2.06c.46 4.17 3.77 7.48 7.94 7.94V23h2v-2.06c4.17-.46 7.48-3.77 7.94-7.94H23v-2h-2.06zM12 19c-3.87 0-7-3.13-7-7s3.13-7 7-7 7 3.13 7 7-3.13 7-7 7z"/>
+      </svg>
+      <span>Center</span>
+    </button>
+    <button id="btn-marks-list" class="action-btn">
+      <svg viewBox="0 0 24 24" fill="currentColor">
+        <path d="M3 13h2v-2H3v2zm0 4h2v-2H3v2zm0-8h2V7H3v2zm4 4h14v-2H7v2zm0 4h14v-2H7v2zM7 7v2h14V7H7z"/>
+      </svg>
+      <span>List</span>
+    </button>
+  </div>
+
+  <!-- Marks List Panel (slide up) -->
+  <div id="marks-panel" class="hidden">
+    <div class="panel-header">
+      <h2>Saved Marks</h2>
+      <button id="panel-close" class="btn-icon">&times;</button>
+    </div>
+    <div id="marks-list"></div>
+    <div class="panel-footer">
+      <button id="btn-export" class="btn-secondary">Export</button>
+      <button id="btn-clear-lines" class="btn-secondary">Clear Lines</button>
+      <button id="btn-clear-marks" class="btn-danger">Clear Marks</button>
+    </div>
+  </div>
+
+  <!-- Mark Label Dialog -->
+  <div id="label-dialog" class="dialog hidden">
+    <div class="dialog-content">
+      <h3>Mark Label</h3>
+      <input type="text" id="label-input" placeholder="RM_1">
+      <div class="dialog-buttons">
+        <button id="label-cancel" class="btn-secondary">Cancel</button>
+        <button id="label-save" class="btn-primary">Save</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="config.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
