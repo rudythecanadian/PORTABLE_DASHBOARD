@@ -22,6 +22,14 @@
     </div>
     <div class="status-right">
       <span id="satellites">-- SV</span>
+      <span id="battery" class="battery-indicator hidden">
+        <svg class="battery-icon" viewBox="0 0 28 14" fill="none">
+          <rect x="0.5" y="0.5" width="23" height="13" rx="2" stroke="white" stroke-width="1"/>
+          <rect x="24" y="4" width="3" height="6" rx="1" fill="white"/>
+          <rect id="battery-fill" x="2" y="2" width="20" height="10" rx="1" fill="var(--success)"/>
+        </svg>
+        <span id="battery-pct">--%</span>
+      </span>
       <span id="connection" class="disconnected">OFFLINE</span>
     </div>
   </div>

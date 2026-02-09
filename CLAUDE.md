@@ -12,6 +12,7 @@ Mobile-first web application for RTK surveying with the Camas rover. Designed fo
 ## Features
 
 - **Real-time Position**: Live GPS position from rover via WebSocket
+- **Battery Level**: Rover LiPo SOC from MAX17048 fuel gauge (green/yellow/red)
 - **Position Averaging**: 5-second capture with strict quality filtering
 - **Mark Locations**: Save points with auto-incrementing labels (RM_1, RM_2...)
 - **Measure Distances**: GPS-based measurement between two points
@@ -76,6 +77,7 @@ const CONFIG = {
 - Fix status badge (RTK FIXED/FLOAT/DGPS/NO FIX)
 - Horizontal accuracy in cm
 - Satellite count
+- Rover battery level (SVG icon + percentage, color-coded: green >50%, yellow 20-50%, red <20%)
 - Connection status (LIVE/OFFLINE)
 
 ### Map

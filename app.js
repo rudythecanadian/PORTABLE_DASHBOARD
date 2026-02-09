@@ -227,6 +227,24 @@ class RTKSurvey {
     // Update satellites
     document.getElementById('satellites').textContent = `${data.num_sv || '--'} SV`;
 
+    // Update battery from rover
+    if (data.battery_pct != null && data.battery_pct >= 0) {
+      const container = document.getElementById('battery');
+      const fill = document.getElementById('battery-fill');
+      const pct = document.getElementById('battery-pct');
+      const level = data.battery_pct;
+
+      container.classList.remove('hidden');
+      pct.textContent = `${level}%`;
+      fill.setAttribute('width', (level / 100) * 20);
+
+      let color;
+      if (level > 50) color = 'var(--success)';
+      else if (level > 20) color = 'var(--warning)';
+      else color = 'var(--danger)';
+      fill.setAttribute('fill', color);
+    }
+
     // Update coordinates display
     if (data.latitude && data.longitude) {
       document.getElementById('latitude').textContent = data.latitude.toFixed(9);
